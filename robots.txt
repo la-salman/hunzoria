@@ -1,0 +1,10 @@
+# STAGING ONLY — blocks all crawlers.
+# Phase 6 (launch): replace the block below with the production rules
+# and add the sitemap line.
+User-agent: *
+Disallow: /
+
+# --- PRODUCTION (do not enable until launch) ---
+# User-agent: *
+# Allow: /
+# Sitemap: https://hunzoria.com/sitemap.xml

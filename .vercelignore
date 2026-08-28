@@ -1,0 +1,8 @@
+# Never deploy macOS metadata
+.DS_Store
+._*
+
+# Repo-only files, not part of the served site
+.gitignore
+scripts/
+*.md
