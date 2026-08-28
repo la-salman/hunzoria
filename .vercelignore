@@ -3,9 +3,12 @@
 ._*
 
 # Repo-only files, not part of the served site.
-# partials/ and scripts/ are the source of the shared chrome; they are
-# stamped into the .html files by scripts/propagate.py and are never served.
+# data/, partials/ and scripts/ are the sources the .html files are generated
+# from (see README.md). The generated HTML is committed and served; these are
+# build inputs and must never be published.
 .gitignore
 scripts/
 partials/
+data/
+build.sh
 *.md
