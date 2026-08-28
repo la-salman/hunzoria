@@ -11,7 +11,10 @@
  * how trips in this region are actually booked.
  *
  * ---------------------------------------------------------------------------
- * BEFORE LAUNCH: replace WHATSAPP_NUMBER below with the real business number.
+ * WHATSAPP_NUMBER is the single source of truth for every wa.me link on the
+ * site - the forms, the floating bubble, and the inline "message us" CTAs.
+ * Change it here only; scripts/propagate.py stamps the no-JS fallback hrefs.
+ *
  * Format: country code + number, digits only, no '+', no spaces, no leading 0.
  * Pakistan example: 0301 234 5678  ->  923012345678
  * ---------------------------------------------------------------------------
@@ -19,7 +22,7 @@
 (function () {
   "use strict";
 
-  var WHATSAPP_NUMBER = "923000000000"; // TODO(launch): real number
+  var WHATSAPP_NUMBER = "923115598884";
   var PLACEHOLDER_NUMBER = "923000000000";
 
   var FIELD_LABELS = {

@@ -88,12 +88,35 @@ SIDEBAR_CTA_BLOCK = """<div class="links-box clearfix">
             </div>"""
 
 
+def whatsapp_number() -> str:
+    """The business number, read from js/inquiry.js.
+
+    That file is the single source of truth: it sets the href at runtime for
+    every wa.me link. We read it here so the no-JS fallback hrefs baked into
+    the HTML cannot drift away from it.
+    """
+    js = (ROOT / "js" / "inquiry.js").read_text(encoding="utf-8")
+    m = re.search(r'var\s+WHATSAPP_NUMBER\s*=\s*"(\d+)"', js)
+    if not m:
+        raise RuntimeError("could not read WHATSAPP_NUMBER from js/inquiry.js")
+    return m.group(1)
+
+
+WHATSAPP_NUMBER = whatsapp_number()
+
+# Displayed form of the same number, e.g. 923115598884 -> +92 311 559 8884
+DISPLAY_NUMBER = (
+    f"+{WHATSAPP_NUMBER[:2]} {WHATSAPP_NUMBER[2:5]} "
+    f"{WHATSAPP_NUMBER[5:8]} {WHATSAPP_NUMBER[8:]}"
+    if len(WHATSAPP_NUMBER) == 12
+    else "+" + WHATSAPP_NUMBER
+)
+
 # Floating WhatsApp button, added to every page before </body>.
-# The href here is a no-JS fallback; js/inquiry.js rewrites it from its own
-# WHATSAPP_NUMBER constant so the number is only maintained in one place.
-WHATSAPP_FLOAT = """
+# The href is a no-JS fallback; js/inquiry.js rewrites it at runtime.
+WHATSAPP_FLOAT = f"""
 <!-- CHROME:WHATSAPP (managed by scripts/propagate.py) -->
-<a href="https://wa.me/923000000000" data-wa-float class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Hunzoria on WhatsApp">
+<a href="https://wa.me/{WHATSAPP_NUMBER}" data-wa-float class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Hunzoria on WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>"""
 
@@ -218,12 +241,22 @@ def render(src: str, page_name: str, nav_items: str, footer: str) -> str:
         '                            <li><i class="icon fa fa-envelope"></i> '
         '<a href="mailto:hello@hunzoria.com">hello@hunzoria.com</a></li>\n'
         '                            <li><i class="icon fa fa-phone-circle"></i> '
-        '<a href="tel:+923000000000">+92 300 000 0000</a></li>\n'
+        '<a href="tel:+923115598884">+92 311 559 8884</a></li>\n'
         '                        </ul>',
         src,
         count=1,
         flags=re.DOTALL,
     )
+
+    # 4c. Force every baked-in wa.me link onto the current number. Without
+    #     this, pages that already carry a WhatsApp button keep an old number
+    #     forever, because step 6 only inserts where one is missing.
+    src = re.sub(r"https://wa\.me/\d+", f"https://wa.me/{WHATSAPP_NUMBER}", src)
+
+    #     Only the business placeholder is rewritten - the team cards carry
+    #     their own per-person numbers from data/team.json.
+    src = src.replace('href="tel:+923000000000"', f'href="tel:+{WHATSAPP_NUMBER}"')
+    src = src.replace("+92 300 000 0000", DISPLAY_NUMBER)
 
     # 5. Site-specific stylesheet, loaded last so it overrides the vendor CSS.
     if "css/hunzoria.css" not in src and 'href="css/responsive.css"' in src:
@@ -270,10 +303,9 @@ def main() -> int:
     changed = []
     for page in pages:
         before = page.read_text(encoding="utf-8")
-        if '<ul class="navigation clearfix">' not in before:
-            print(f"  {page.name:26} skipped (no chrome)")
-            continue
-
+        # 404.html has no nav or footer of its own. render() handles that fine,
+        # and it still needs the stylesheet, inquiry.js and the current
+        # WhatsApp number - so it is processed like everything else.
         after = render(before, page.name, nav_items, footer)
         if after == before:
             status = "ok"
