@@ -1,0 +1,64 @@
+{
+  "_README": [
+    "Day experiences shown on activities.html.",
+    "These deliberately have no detail page of their own - each card links to",
+    "booking.html?activity=<slug>, and js/inquiry.js preselects it in the form.",
+    "Edit here, then run:  python3 scripts/build_listings.py"
+  ],
+  "activities": [
+    {
+      "slug": "hussaini-bridge",
+      "name": "Hussaini Suspension Bridge",
+      "location": "Upper Hunza",
+      "duration": "Half day",
+      "price": "PKR 4,500",
+      "image": "images/resource/tour-5.jpg",
+      "summary": "Cross one of the most photographed rope bridges in the world, over the Hunza river at Hussaini. Widely spaced planks, a long span, and a lot of wind."
+    },
+    {
+      "slug": "attabad-boating",
+      "name": "Attabad Lake Boating",
+      "location": "Gojal, Hunza",
+      "duration": "Half day",
+      "price": "PKR 6,000",
+      "image": "images/resource/tour-10.jpg",
+      "summary": "A boat out onto the turquoise lake formed by the 2010 landslide, with the drowned section of the old Karakoram Highway still visible below the surface."
+    },
+    {
+      "slug": "naltar-skiing",
+      "name": "Skiing at Naltar",
+      "location": "Naltar, Ghizer",
+      "duration": "Full day",
+      "price": "PKR 12,000",
+      "image": "images/resource/tour-7.jpg",
+      "summary": "Lift-served skiing at the Air Force resort above Naltar - the most accessible skiing in Pakistan. Beginners upward; hire and instruction arranged locally."
+    },
+    {
+      "slug": "hopper-glacier",
+      "name": "Hopper Glacier Walk",
+      "location": "Nagar Valley",
+      "duration": "Full day",
+      "price": "PKR 7,500",
+      "image": "images/resource/tour-11.jpg",
+      "summary": "Stand on a glacier twenty minutes from the road. The Hopper (Bualtar) glacier is black with moraine and genuinely enormous."
+    },
+    {
+      "slug": "cherry-blossom-walk",
+      "name": "Blossom Season Walks",
+      "location": "Karimabad, Hunza",
+      "duration": "Half day",
+      "price": "PKR 3,500",
+      "image": "images/resource/tour-12.jpg",
+      "summary": "Guided walks through the apricot and cherry orchards in late March and April, when the whole valley floor turns white and pink. Seasonal."
+    },
+    {
+      "slug": "phander-trout-fishing",
+      "name": "Trout Fishing at Phander",
+      "location": "Phander, Ghizer",
+      "duration": "Full day",
+      "price": "PKR 9,000",
+      "image": "images/resource/tour-13.jpg",
+      "summary": "The Ghizer river and Phander Lake hold good brown trout. Permits, rods and a local guide who knows where the fish actually are."
+    }
+  ]
+}

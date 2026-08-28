@@ -5,8 +5,8 @@ Push the canonical shared chrome (nav + footer + header CTA) into every page.
 WHY THIS EXISTS
 ---------------
 This is a static site with no build step and no templating, so the header and
-footer are physically duplicated in all 19 HTML files. Without this script,
-changing one menu item is a 19-file hand edit and the pages drift apart -
+footer are physically duplicated across every HTML file. Without this script,
+changing one menu item is a 30-file hand edit and the pages drift apart -
 which is exactly how the site ended up with 5 pages branded "Hunzoria" and
 14 still branded "Treker".
 
@@ -40,10 +40,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PAGE_NAV = {
     "index.html": "index.html",
     "destinations.html": "destinations.html",
-    "destinations-2.html": "destinations.html",
     "tours.html": "tours.html",
-    "packages.html": "tours.html",
-    "packages-2.html": "tours.html",
     "activities.html": "activities.html",
     "trekking.html": "activities.html",
     "gallery.html": "activities.html",
@@ -56,7 +53,23 @@ PAGE_NAV = {
     "blog-single.html": "blog.html",
     "contact.html": "contact.html",
     "booking.html": "contact.html",
+    "thank-you.html": "contact.html",
 }
+
+# Generated detail pages (scripts/build_pages.py) highlight by prefix.
+PREFIX_NAV = (
+    ("tour-", "tours.html"),
+    ("destination-", "destinations.html"),
+)
+
+
+def nav_key(page_name: str) -> str | None:
+    if page_name in PAGE_NAV:
+        return PAGE_NAV[page_name]
+    for prefix, target in PREFIX_NAV:
+        if page_name.startswith(prefix):
+            return target
+    return None
 
 # Header CTA that replaces the cart / wishlist / dead-search cluster.
 CTA_BLOCK = """<div class="links-box clearfix">
@@ -134,7 +147,7 @@ def validate_partials(nav_items: str, footer: str) -> list[str]:
 
 def render(src: str, page_name: str, nav_items: str, footer: str) -> str:
     """Return `src` with the canonical chrome applied. Pure - writes nothing."""
-    current = PAGE_NAV.get(page_name)
+    current = nav_key(page_name)
 
     # 1. Both navigation menus (desktop + mobile sidebar).
     # Collect every occurrence first, then rewrite back-to-front so that

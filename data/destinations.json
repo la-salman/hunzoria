@@ -1,0 +1,146 @@
+{
+  "_README": [
+    "Source of truth for every destination detail page and for the cards on destinations.html.",
+    "Edit here, then run:  python3 scripts/build_pages.py",
+    "",
+    "'region' drives the MixItUp filter class on destinations.html - if you add a",
+    "new region you must also add a filter button in that page's .filter-tabs.",
+    "Tours are linked automatically from data/tours.json via each tour's 'destination'."
+  ],
+  "regions": [
+    { "slug": "hunza", "label": "Hunza" },
+    { "slug": "skardu", "label": "Skardu" },
+    { "slug": "nagar", "label": "Nagar" },
+    { "slug": "ghizer", "label": "Ghizer" },
+    { "slug": "astore", "label": "Astore" },
+    { "slug": "fairy-meadows", "label": "Diamer" }
+  ],
+  "destinations": [
+    {
+      "slug": "hunza",
+      "name": "Hunza Valley",
+      "region": "hunza",
+      "best_season": "April - October",
+      "altitude": "2,400 m",
+      "image": "images/resource/tour-1.jpg",
+      "summary": "Terraced orchards, two restored forts and the Karakoram Highway running straight through the middle of it. The valley most people mean when they say northern Pakistan.",
+      "intro": [
+        "Hunza sits at around 2,400 metres on the Karakoram Highway, with Rakaposhi on one side and Ultar Sar directly above Karimabad. The valley has been a trading corridor for centuries, and the two forts - Baltit and Altit - are the physical record of that.",
+        "It is also the easiest part of Gilgit-Baltistan to travel in. The road is paved, the guesthouses are good, and you can spend a week here without a single hard day of walking. Spring blossom in April and the apricot harvest in July are the two obvious times to come; autumn colour in late October is arguably better than both."
+      ],
+      "highlights": [
+        "Baltit Fort and Altit Fort, Karimabad",
+        "Duikar / Eagle's Nest sunrise viewpoint",
+        "Attabad Lake",
+        "Passu Cones and the Hussaini suspension bridge",
+        "Khunjerab Pass and the China border"
+      ],
+      "gallery": ["images/resource/gallery-1.jpg", "images/resource/gallery-2.jpg", "images/resource/gallery-3.jpg"]
+    },
+    {
+      "slug": "skardu",
+      "name": "Skardu and Baltistan",
+      "region": "skardu",
+      "best_season": "May - September",
+      "altitude": "2,230 m",
+      "image": "images/resource/tour-2.jpg",
+      "summary": "Cold desert, lakes and the Indus. Skardu is the staging post for the Baltoro and the greatest concentration of high peaks anywhere on earth.",
+      "intro": [
+        "Baltistan is wider and drier than Hunza - sand dunes beside the Indus at 2,200 metres, and a hard, clear light. Skardu town is the base for everything in the region, including every expedition heading for K2 and the Baltoro glacier.",
+        "You do not need to be a mountaineer to enjoy it. The Kachura lakes, Shigar valley, Khaplu palace and the Deosai Plains are all reachable by road, and the Manthokha waterfall makes an easy day out."
+      ],
+      "highlights": [
+        "Shangrila and Upper Kachura lakes",
+        "Katpana cold desert and the Sarfaranga dunes",
+        "Shigar Fort and the Amburiq Mosque",
+        "Deosai Plains and Sheosar Lake",
+        "The Baltoro glacier, Concordia and K2 base camp"
+      ],
+      "gallery": ["images/resource/gallery-4.jpg", "images/resource/gallery-5.jpg", "images/resource/gallery-6.jpg"]
+    },
+    {
+      "slug": "nagar",
+      "name": "Nagar Valley",
+      "region": "nagar",
+      "best_season": "May - September",
+      "altitude": "2,500 m",
+      "image": "images/resource/tour-4.jpg",
+      "summary": "Hunza's quieter neighbour across the river, and the way in to Rakaposhi base camp, the Hopper glacier and the Hispar route.",
+      "intro": [
+        "Nagar faces Hunza across the river and gets a fraction of the visitors, which is most of its appeal. It is a working agricultural valley with glaciers coming down almost to the road.",
+        "For walkers it is the better side. Minapin is the trailhead for Rakaposhi base camp, Hopper gives you a glacier you can stand on within twenty minutes of the car park, and Hispar is the start of one of the great high routes in Asia."
+      ],
+      "highlights": [
+        "Rakaposhi base camp trek from Minapin",
+        "Hopper glacier and the Bualtar viewpoint",
+        "Rush Lake, one of the highest alpine lakes in the world",
+        "Hispar glacier and the route towards Snow Lake",
+        "Quieter villages and homestays"
+      ],
+      "gallery": ["images/resource/gallery-10.jpg", "images/resource/gallery-11.jpg", "images/resource/gallery-12.jpg"]
+    },
+    {
+      "slug": "ghizer",
+      "name": "Ghizer and Phander",
+      "region": "ghizer",
+      "best_season": "May - October",
+      "altitude": "2,100 m",
+      "image": "images/resource/tour-7.jpg",
+      "summary": "River valleys, trout, and the road west towards Shandur. Naltar's forest and coloured lakes sit at the eastern end.",
+      "intro": [
+        "Ghizer runs west from Gilgit towards Chitral, following the Ghizer river through Gupis to Phander and eventually over the Shandur Pass. It is greener and gentler than the rest of Gilgit-Baltistan, and known for trout fishing.",
+        "Naltar, technically a side valley above Nomal, is the other reason to come: pine forest, three coloured lakes, and the country's most accessible skiing in winter."
+      ],
+      "highlights": [
+        "Phander Lake and the Ghizer river valley",
+        "Naltar valley and the coloured lakes",
+        "Naltar ski resort in winter",
+        "Khalti Lake and Gupis",
+        "The road west to Shandur Pass"
+      ],
+      "gallery": ["images/resource/gallery-19.jpg", "images/resource/gallery-20.jpg", "images/resource/gallery-21.jpg"]
+    },
+    {
+      "slug": "astore",
+      "name": "Astore and Deosai",
+      "region": "astore",
+      "best_season": "July - September",
+      "altitude": "2,600 m",
+      "image": "images/resource/tour-9.jpg",
+      "summary": "The southern gateway to the Deosai Plains, and the approach to Rama Lake beneath the eastern face of Nanga Parbat.",
+      "intro": [
+        "Astore branches south off the Karakoram Highway near Jaglot and climbs towards the Deosai Plains. It is the quieter of the two Deosai approaches, and the one that gives you Rama Lake and Rama meadow along the way.",
+        "The Deosai season is short - the plateau is under snow from October to June - so this is firmly a high-summer destination."
+      ],
+      "highlights": [
+        "Rama Lake and Rama meadow",
+        "The eastern face of Nanga Parbat",
+        "Deosai Plains from the southern approach",
+        "Sheosar Lake",
+        "Minimarg and the Burzil valley"
+      ],
+      "gallery": ["images/resource/gallery-7.jpg", "images/resource/gallery-8.jpg", "images/resource/gallery-13.jpg"]
+    },
+    {
+      "slug": "fairy-meadows",
+      "name": "Fairy Meadows and Nanga Parbat",
+      "region": "fairy-meadows",
+      "best_season": "May - September",
+      "altitude": "3,300 m",
+      "image": "images/resource/tour-3.jpg",
+      "summary": "A grass shelf at 3,300 metres facing the Raikot face of Nanga Parbat, reached by one of the more alarming jeep tracks in the world.",
+      "intro": [
+        "Fairy Meadows sits above Raikot Bridge in Diamer district, and the approach is famous: a narrow, unguarded jeep track up from the Karakoram Highway, then a walk of two to three hours to the meadow.",
+        "The reward is Nanga Parbat - 8,126 metres, the ninth-highest mountain in the world - filling the sky from a pine-fringed alpine meadow. From there the trail continues to Beyal and the base camp viewpoint."
+      ],
+      "highlights": [
+        "The Raikot Bridge to Tato jeep track",
+        "Fairy Meadows and its wooden huts",
+        "Beyal camp and the Nanga Parbat base camp viewpoint",
+        "Sunrise on the Raikot face",
+        "Pine forest and meadow walking"
+      ],
+      "gallery": ["images/resource/gallery-7.jpg", "images/resource/gallery-9.jpg", "images/resource/gallery-14.jpg"]
+    }
+  ]
+}

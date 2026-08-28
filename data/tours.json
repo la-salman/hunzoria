@@ -1,0 +1,367 @@
+{
+  "_README": [
+    "Source of truth for every tour detail page and for the cards on tours.html.",
+    "Edit here, then run:  python3 scripts/build_pages.py",
+    "",
+    "PRICES AND ITINERARIES ARE REALISTIC PLACEHOLDERS - confirm before launch.",
+    "Every 'image' must exist under images/resource/.",
+    "'destination' must match a slug in data/destinations.json."
+  ],
+  "tours": [
+    {
+      "slug": "hunza-valley-explorer",
+      "name": "Hunza Valley Explorer",
+      "destination": "hunza",
+      "duration": "7 Days",
+      "difficulty": "Easy",
+      "group_size": "4-12 People",
+      "altitude": "2,400 m",
+      "price": "PKR 145,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-1.jpg",
+      "summary": "A week in the Hunza valley at an unhurried pace - Karimabad, Baltit and Altit forts, Attabad Lake, Passu Cones and the Hussaini suspension bridge, with time to actually sit and drink tea.",
+      "intro": [
+        "Hunza is the valley most people picture when they imagine northern Pakistan: terraced apricot orchards stacked against 7,000-metre peaks, and a pace of life that rewards staying still. This trip is built around that pace. We base ourselves in Karimabad for several nights rather than moving hotels every day, and take day trips out from there.",
+        "You will walk the old town lanes below Baltit Fort, watch sunrise on Rakaposhi from Duikar, take a boat across Attabad Lake, and cross the Hussaini bridge if the wind allows. It suits first-time visitors, families, and anyone who wants the Karakoram without a serious trek."
+      ],
+      "highlights": [
+        "Baltit and Altit forts, both restored by the Aga Khan Trust for Culture",
+        "Sunrise over Rakaposhi and Golden Peak from Duikar viewpoint",
+        "Boat crossing on Attabad Lake",
+        "Passu Cones, Passu Glacier viewpoint and the Hussaini suspension bridge",
+        "Apricot and cherry orchards in season, and Hunza walnut cake"
+      ],
+      "included": [
+        "All accommodation (guesthouses and small hotels)",
+        "Private vehicle and driver for the full trip",
+        "English-speaking local guide from Gilgit-Baltistan",
+        "Daily breakfast and dinner",
+        "All entry fees and permits"
+      ],
+      "excluded": [
+        "Flights or transport to Gilgit / Islamabad",
+        "Lunches and personal expenses",
+        "Travel insurance",
+        "Tips for guide and driver"
+      ],
+      "itinerary": [
+        { "day": "Day 1", "title": "Arrive Gilgit", "text": "Fly or drive into Gilgit, meet your guide and driver, and settle in. Short walk through the bazaar in the evening to shake off the journey." },
+        { "day": "Day 2", "title": "Gilgit to Karimabad", "text": "Drive up the Karakoram Highway to Karimabad, stopping at the Rakaposhi viewpoint in Ghulmet for lunch. Afternoon free to wander the old town." },
+        { "day": "Day 3", "title": "Baltit and Altit forts", "text": "A full day on foot in Karimabad and Altit - both forts, the old settlement lanes, and the royal garden. Easy walking, lots of stopping." },
+        { "day": "Day 4", "title": "Duikar sunrise and Attabad Lake", "text": "Early start for sunrise at Duikar, then down to Attabad Lake for a boat crossing and a long lunch by the water." },
+        { "day": "Day 5", "title": "Upper Hunza - Passu and Hussaini", "text": "Drive north to Gulmit and Passu. Walk to the Passu Glacier viewpoint and cross the Hussaini suspension bridge if conditions allow." },
+        { "day": "Day 6", "title": "Karimabad at your own pace", "text": "A deliberately unscheduled day. Walk the Ultar Nala trail, visit a local workshop, or do very little." },
+        { "day": "Day 7", "title": "Return to Gilgit", "text": "Drive back down the KKH to Gilgit for onward flights or the road to Islamabad." }
+      ],
+      "gallery": ["images/resource/gallery-1.jpg", "images/resource/gallery-2.jpg", "images/resource/gallery-3.jpg"]
+    },
+    {
+      "slug": "skardu-deosai-expedition",
+      "name": "Skardu and Deosai Plains",
+      "destination": "skardu",
+      "duration": "8 Days",
+      "difficulty": "Easy-Moderate",
+      "group_size": "4-10 People",
+      "altitude": "4,114 m",
+      "price": "PKR 165,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-2.jpg",
+      "summary": "Skardu, Shangrila and the Upper Kachura lakes, then over the Deosai Plains - the second-highest plateau in the world - with a night under canvas at Sheosar Lake.",
+      "intro": [
+        "Baltistan is a different landscape from Hunza: wider, drier, more lunar, with the Indus running through it and cold desert dunes outside Skardu town. This trip pairs the valley's lakes and forts with a crossing of the Deosai Plains, which sit above 4,000 metres and stay under snow for most of the year.",
+        "Deosai is open roughly July to September. We camp one night at Sheosar Lake, which is cold and worth it. Brown bear sightings are possible but never promised."
+      ],
+      "highlights": [
+        "Shangrila and Upper Kachura lakes",
+        "Katpana cold desert and the Sarfaranga dunes",
+        "Kharpocho Fort above the Indus",
+        "A night camping at Sheosar Lake on the Deosai Plains",
+        "Manthokha waterfall on the return"
+      ],
+      "included": [
+        "All accommodation including one night of full-service camping",
+        "4x4 vehicles for the Deosai crossing",
+        "English-speaking local guide and camp crew",
+        "All meals on the Deosai section, breakfast and dinner elsewhere",
+        "Deosai National Park permits"
+      ],
+      "excluded": [
+        "Flights to Skardu or Islamabad",
+        "Sleeping bag hire (available locally)",
+        "Travel insurance",
+        "Tips"
+      ],
+      "itinerary": [
+        { "day": "Day 1", "title": "Arrive Skardu", "text": "Arrive by air or road. Easy afternoon to adjust to the altitude, with a walk along the Indus." },
+        { "day": "Day 2", "title": "Skardu lakes", "text": "Shangrila (Lower Kachura) and Upper Kachura lakes, then the Katpana cold desert at golden hour." },
+        { "day": "Day 3", "title": "Kharpocho Fort and Sarfaranga", "text": "Morning climb to Kharpocho Fort for the view over the Indus confluence, afternoon at the Sarfaranga dunes." },
+        { "day": "Day 4", "title": "Shigar valley", "text": "Drive into the Shigar valley, visit Shigar Fort and the 700-year-old Amburiq Mosque." },
+        { "day": "Day 5", "title": "Onto the Deosai Plains", "text": "4x4 up onto the plateau. Long, slow, spectacular driving. Camp at Sheosar Lake." },
+        { "day": "Day 6", "title": "Deosai to Astore", "text": "Cross the plains to Chilim and down towards Astore, watching for marmots and, with luck, brown bear." },
+        { "day": "Day 7", "title": "Astore to Skardu", "text": "Return leg with a stop at Manthokha waterfall." },
+        { "day": "Day 8", "title": "Depart Skardu", "text": "Transfer for onward flights or the Skardu-Islamabad road." }
+      ],
+      "gallery": ["images/resource/gallery-4.jpg", "images/resource/gallery-5.jpg", "images/resource/gallery-6.jpg"]
+    },
+    {
+      "slug": "fairy-meadows-nanga-parbat",
+      "name": "Fairy Meadows and Nanga Parbat Base Camp",
+      "destination": "fairy-meadows",
+      "duration": "6 Days",
+      "difficulty": "Moderate",
+      "group_size": "4-10 People",
+      "altitude": "4,000 m",
+      "price": "PKR 125,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-3.jpg",
+      "summary": "The classic walk in to Fairy Meadows, then a day hike to Beyal camp and the base camp viewpoint beneath the Raikot face of Nanga Parbat - the ninth-highest mountain on earth.",
+      "intro": [
+        "Getting to Fairy Meadows is part of the story: a jeep track up from Raikot Bridge that is genuinely exposed, then an hour or two on foot or by mule to the meadow itself. What waits at the top is a grass shelf at 3,300 metres with Nanga Parbat filling the entire southern sky.",
+        "We stay two nights so there is a full day for the walk out to Beyal and the base camp viewpoint. The trail is not technical, but it is long and at altitude."
+      ],
+      "highlights": [
+        "The Raikot Bridge jeep track - one of the more memorable roads anywhere",
+        "Two nights in wooden huts at Fairy Meadows",
+        "Day hike to Beyal camp and the Nanga Parbat base camp viewpoint",
+        "Sunrise and sunset on the Raikot face",
+        "Pine forest and alpine meadow walking"
+      ],
+      "included": [
+        "Jeep transfer from Raikot Bridge",
+        "Two nights in Fairy Meadows huts, one night in Chilas",
+        "Guide and porter support",
+        "All meals at Fairy Meadows",
+        "Park fees"
+      ],
+      "excluded": [
+        "Transport to Raikot Bridge",
+        "Mule or porter hire for personal bags",
+        "Travel insurance",
+        "Tips"
+      ],
+      "itinerary": [
+        { "day": "Day 1", "title": "Islamabad or Gilgit to Chilas", "text": "Long driving day along the Karakoram Highway to Chilas. Overnight in a simple hotel." },
+        { "day": "Day 2", "title": "Raikot Bridge to Fairy Meadows", "text": "Jeep up the Raikot track to Tato, then walk roughly 3 hours to Fairy Meadows. Afternoon at the meadow." },
+        { "day": "Day 3", "title": "Beyal camp and base camp viewpoint", "text": "Full day hike to Beyal and on towards the Nanga Parbat base camp viewpoint. Around 7 hours return." },
+        { "day": "Day 4", "title": "Fairy Meadows to Gilgit", "text": "Walk down to Tato, jeep to Raikot Bridge, then drive north to Gilgit." },
+        { "day": "Day 5", "title": "Gilgit and Rakaposhi viewpoint", "text": "Gentler day - Gilgit bazaar, the Kargah Buddha carving, and the Rakaposhi viewpoint." },
+        { "day": "Day 6", "title": "Depart Gilgit", "text": "Transfer to the airport or the road south." }
+      ],
+      "gallery": ["images/resource/gallery-7.jpg", "images/resource/gallery-8.jpg", "images/resource/gallery-9.jpg"]
+    },
+    {
+      "slug": "rakaposhi-base-camp-trek",
+      "name": "Rakaposhi Base Camp Trek",
+      "destination": "nagar",
+      "duration": "5 Days",
+      "difficulty": "Moderate-Difficult",
+      "group_size": "4-8 People",
+      "altitude": "3,500 m",
+      "price": "PKR 98,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-4.jpg",
+      "summary": "A short, steep trek from Minapin in Nagar up to Hapakun and Tagafari, with Rakaposhi and Diran rising straight out of the glacier in front of camp.",
+      "intro": [
+        "Rakaposhi base camp is one of the best short treks in the Karakoram: three days of walking gets you to a meadow at 3,500 metres looking directly at a 7,788-metre face. The climb from Minapin is unrelenting on the first day, and then it opens out.",
+        "This is a real trek. You need to be comfortable walking uphill for five or six hours with a day pack. Porters carry the main loads and camp is fully supported."
+      ],
+      "highlights": [
+        "Tagafari meadow directly beneath Rakaposhi and Diran",
+        "The Minapin glacier crossing",
+        "Two nights of supported camping at altitude",
+        "Views back down the Hunza valley from Hapakun",
+        "Small group, few other walkers"
+      ],
+      "included": [
+        "Full camping equipment and camp crew",
+        "Porters for group and personal loads",
+        "Certified trekking guide",
+        "All meals on trek",
+        "Transport from Gilgit or Karimabad to Minapin"
+      ],
+      "excluded": [
+        "Personal trekking gear and sleeping bag",
+        "Travel insurance with trekking cover (required)",
+        "Accommodation before and after the trek",
+        "Tips for crew"
+      ],
+      "itinerary": [
+        { "day": "Day 1", "title": "To Minapin", "text": "Drive to Minapin village in Nagar, meet the trekking crew and check gear. Overnight in a guesthouse." },
+        { "day": "Day 2", "title": "Minapin to Hapakun", "text": "A steep 5-6 hour climb through pine forest to the Hapakun meadow. Camp." },
+        { "day": "Day 3", "title": "Hapakun to Tagafari base camp", "text": "Shorter but higher - roughly 3 hours onto the moraine and up to Tagafari. Afternoon free for the glacier viewpoint." },
+        { "day": "Day 4", "title": "Descend to Minapin", "text": "Long descent all the way back to Minapin, around 6-7 hours." },
+        { "day": "Day 5", "title": "Minapin to Gilgit", "text": "Drive back down the valley." }
+      ],
+      "gallery": ["images/resource/gallery-10.jpg", "images/resource/gallery-11.jpg", "images/resource/gallery-12.jpg"]
+    },
+    {
+      "slug": "passu-glacier-hussaini-bridge",
+      "name": "Passu Glacier and Hussaini Bridge",
+      "destination": "hunza",
+      "duration": "2 Days",
+      "difficulty": "Easy",
+      "group_size": "2-15 People",
+      "altitude": "2,800 m",
+      "price": "PKR 32,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-5.jpg",
+      "summary": "A short upper-Hunza break: the Passu Cones, a walk to the glacier snout, and a crossing of the Hussaini suspension bridge over the Hunza river.",
+      "intro": [
+        "If you only have a couple of days, this is the stretch of the Karakoram Highway to spend them on. Upper Hunza between Gulmit and Passu has the Cathedral Ridge - the Passu Cones - on one side and the Batura and Passu glaciers on the other.",
+        "The Hussaini bridge deserves its reputation: widely spaced planks, a long span, and a lot of wind. Crossing is entirely optional and nobody will judge you."
+      ],
+      "highlights": [
+        "Passu Cones from the classic viewpoint",
+        "Walk to the Passu Glacier snout",
+        "Hussaini suspension bridge crossing",
+        "Borith Lake and its migrating birds",
+        "Gulmit village and the old polo ground"
+      ],
+      "included": [
+        "One night in a Passu or Gulmit guesthouse",
+        "Transport from Karimabad or Gilgit",
+        "Local guide",
+        "Breakfast and dinner"
+      ],
+      "excluded": ["Lunches", "Travel insurance", "Personal expenses", "Tips"],
+      "itinerary": [
+        { "day": "Day 1", "title": "To Passu", "text": "Drive up from Karimabad, stopping at Attabad Lake and Gulmit. Afternoon walk to Borith Lake. Overnight Passu." },
+        { "day": "Day 2", "title": "Glacier and bridge", "text": "Morning walk to the Passu Glacier viewpoint, then the Hussaini bridge before driving back down the valley." }
+      ],
+      "gallery": ["images/resource/gallery-13.jpg", "images/resource/gallery-14.jpg", "images/resource/gallery-15.jpg"]
+    },
+    {
+      "slug": "khunjerab-pass-border",
+      "name": "Khunjerab Pass and the China Border",
+      "destination": "hunza",
+      "duration": "3 Days",
+      "difficulty": "Easy",
+      "group_size": "2-15 People",
+      "altitude": "4,693 m",
+      "price": "PKR 55,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-6.jpg",
+      "summary": "Up the Karakoram Highway to Khunjerab Pass at 4,693 metres - the highest paved border crossing in the world - through the Khunjerab National Park.",
+      "intro": [
+        "The road to Khunjerab is the reason a lot of people come to Pakistan in the first place. From Sost the highway climbs steadily through the national park, past Himalayan ibex country, to the border marker on the pass itself.",
+        "It is a drive rather than a trek, but 4,693 metres is high enough that some people feel it. We build in an acclimatisation night at Passu or Sost rather than going straight up."
+      ],
+      "highlights": [
+        "The border marker at Khunjerab Pass, 4,693 m",
+        "Khunjerab National Park - ibex, marmots, occasionally yak",
+        "Sost dry port and the upper Gojal valley",
+        "The highest stretch of the Karakoram Highway",
+        "Attabad Lake on the return"
+      ],
+      "included": [
+        "Two nights accommodation",
+        "Transport throughout",
+        "Khunjerab National Park entry fees",
+        "Local guide",
+        "Breakfast and dinner"
+      ],
+      "excluded": ["Lunches", "Travel insurance", "Chinese visa (the border itself is not crossed)", "Tips"],
+      "itinerary": [
+        { "day": "Day 1", "title": "Karimabad to Passu", "text": "Drive north through Attabad and Gulmit to Passu. Easy afternoon to acclimatise." },
+        { "day": "Day 2", "title": "Khunjerab Pass", "text": "Early start to Sost and up through the national park to the pass. Time at the border marker, then back down to Passu or Sost." },
+        { "day": "Day 3", "title": "Return to Karimabad", "text": "Drive back down the KKH with stops for photographs." }
+      ],
+      "gallery": ["images/resource/gallery-16.jpg", "images/resource/gallery-17.jpg", "images/resource/gallery-18.jpg"]
+    },
+    {
+      "slug": "naltar-valley-winter",
+      "name": "Naltar Valley Winter and Ski Week",
+      "destination": "ghizer",
+      "duration": "6 Days",
+      "difficulty": "Easy-Moderate",
+      "group_size": "4-10 People",
+      "altitude": "3,000 m",
+      "price": "PKR 135,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-7.jpg",
+      "summary": "A winter week in Naltar - pine forest, the coloured lakes under snow, and lift-served skiing at the Air Force resort, which is the most accessible skiing in Pakistan.",
+      "intro": [
+        "Naltar is a forested side valley an hour of rough jeep track above Gilgit, and in winter it is the best place in the country to ski. The Pakistan Air Force runs a small resort with a chairlift, and the surrounding slopes are wide, quiet and mostly empty.",
+        "Suitable for confident beginners upwards. Instruction and equipment hire can be arranged locally. In summer the same valley is about the lakes rather than the snow."
+      ],
+      "highlights": [
+        "Lift-served skiing at the Naltar ski resort",
+        "The Naltar coloured lakes - blue, green and white",
+        "Jeep track up from Nomal through the pine forest",
+        "Snowshoe walking for non-skiers",
+        "Wood-stove guesthouse evenings"
+      ],
+      "included": [
+        "Five nights guesthouse accommodation in Naltar",
+        "4x4 transfers from Gilgit",
+        "All meals",
+        "Local guide",
+        "Ski resort access"
+      ],
+      "excluded": ["Ski and boot hire", "Instruction", "Travel insurance with winter sports cover", "Tips"],
+      "itinerary": [
+        { "day": "Day 1", "title": "Arrive Gilgit", "text": "Arrive and overnight in Gilgit." },
+        { "day": "Day 2", "title": "Gilgit to Naltar", "text": "Jeep up the Naltar track through Nomal. Afternoon settling in and a short walk." },
+        { "day": "Day 3", "title": "Ski day", "text": "Full day at the resort, or snowshoe walking in the forest for non-skiers." },
+        { "day": "Day 4", "title": "Naltar lakes", "text": "Walk or ride up to the coloured lakes, frozen and quiet in winter." },
+        { "day": "Day 5", "title": "Second ski day", "text": "Another day on the slopes, or a longer forest walk towards upper Naltar." },
+        { "day": "Day 6", "title": "Return to Gilgit", "text": "Jeep back down and transfer for onward travel." }
+      ],
+      "gallery": ["images/resource/gallery-19.jpg", "images/resource/gallery-20.jpg", "images/resource/gallery-21.jpg"]
+    },
+    {
+      "slug": "k2-base-camp-concordia",
+      "name": "K2 Base Camp and Concordia Trek",
+      "destination": "skardu",
+      "duration": "18 Days",
+      "difficulty": "Difficult",
+      "group_size": "6-12 People",
+      "altitude": "5,150 m",
+      "price": "PKR 495,000",
+      "price_note": "/person",
+      "image": "images/resource/tour-8.jpg",
+      "summary": "The full Baltoro glacier trek to Concordia and K2 base camp - three weeks in the greatest concentration of high peaks anywhere on earth. Serious expedition trekking.",
+      "intro": [
+        "Concordia is where the Baltoro and Godwin-Austen glaciers meet, and it is ringed by four of the world's fourteen 8,000-metre peaks. Getting there means roughly two weeks of walking on glacier and moraine, camping every night, with no road access and no easy exit.",
+        "This is the most demanding trip we run. It requires previous multi-day trekking experience, genuine fitness, and comfort with basic conditions for an extended period. It is also, by common consent, one of the great treks on the planet."
+      ],
+      "highlights": [
+        "Concordia - K2, Broad Peak, Gasherbrum I and II from one place",
+        "K2 base camp and the Gilkey Memorial",
+        "Trango Towers and Masherbrum from the Baltoro",
+        "Askole to Paiju along the Braldu gorge",
+        "Full expedition support with cook crew and porters"
+      ],
+      "included": [
+        "All camping equipment, tents and cook crew",
+        "Porters for group and personal loads",
+        "Certified high-altitude trekking guide",
+        "All meals on trek",
+        "Central Karakoram National Park permits and fees",
+        "Transport Skardu-Askole-Skardu"
+      ],
+      "excluded": [
+        "Personal trekking and cold-weather gear",
+        "Mandatory trekking insurance with helicopter evacuation cover",
+        "Hotel nights in Skardu beyond the itinerary",
+        "Tips for crew and porters"
+      ],
+      "itinerary": [
+        { "day": "Day 1-2", "title": "Skardu and preparation", "text": "Arrive Skardu, gear check, permits and briefing. One spare day built in for the Skardu flight, which is weather-dependent." },
+        { "day": "Day 3", "title": "Skardu to Askole", "text": "Long, rough jeep drive to Askole, the last village on the route." },
+        { "day": "Day 4", "title": "Askole to Jhola", "text": "First trekking day along the Braldu river. Around 7 hours." },
+        { "day": "Day 5", "title": "Jhola to Paiju", "text": "Continue up the valley with the first views of the Trango group." },
+        { "day": "Day 6", "title": "Rest day at Paiju", "text": "Acclimatisation day and porter preparation before stepping onto the glacier." },
+        { "day": "Day 7", "title": "Paiju to Khoburtse", "text": "Onto the Baltoro glacier proper. Slow, rocky going." },
+        { "day": "Day 8", "title": "Khoburtse to Urdukas", "text": "Camp on a grassy shelf above the glacier with Masherbrum opposite." },
+        { "day": "Day 9-10", "title": "Urdukas to Goro II to Concordia", "text": "Two days up the glacier to Concordia at 4,600 m." },
+        { "day": "Day 11", "title": "Concordia to K2 base camp", "text": "Day walk up the Godwin-Austen glacier to K2 base camp and the Gilkey Memorial, returning to Concordia." },
+        { "day": "Day 12", "title": "Rest or Broad Peak base camp", "text": "Spare day for weather, or an optional walk to Broad Peak base camp." },
+        { "day": "Day 13-16", "title": "Return down the Baltoro", "text": "Retrace the glacier and valley to Askole over four days." },
+        { "day": "Day 17", "title": "Askole to Skardu", "text": "Jeep back to Skardu. Hot shower, real bed." },
+        { "day": "Day 18", "title": "Depart Skardu", "text": "Fly or drive out." }
+      ],
+      "gallery": ["images/resource/gallery-1.jpg", "images/resource/gallery-5.jpg", "images/resource/gallery-9.jpg"]
+    }
+  ]
+}

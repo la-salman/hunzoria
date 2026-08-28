@@ -1,0 +1,189 @@
+<!--
+  Tour detail body. Rendered per tour by scripts/build_pages.py from
+  data/tours.json into partials/page-shell.html.
+
+  Deliberately dropped from the original template markup:
+    - the rating / review box   (invented 5-star reviews)
+    - the "Follow us" widget    (invented follower counts)
+    - the "Category" widget     (Therapy / Beauty Items / Body Sliming)
+    - the "Buy Treker" widget   (an advert for the ThemeForest template)
+-->
+<section class="package-detail-section">
+		<div class="auto-container">
+
+			<!-- Upper Box -->
+			<div class="upper-box">
+				<div class="clearfix">
+					<div class="pull-left">
+						<h4>{{name}}</h4>
+					</div>
+					<div class="pull-right">
+						<div class="price">{{price}}<span>{{price_note}}</span></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Package Info Box -->
+			<div class="package-info-box">
+				<div class="inner-container d-flex justify-content-between align-items-center">
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/duration.svg" alt="Duration" /></div>
+							<strong>Duration</strong>
+							{{duration}}
+						</div>
+					</div>
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/speedometer.svg" alt="Difficulty" /></div>
+							<strong>Difficulty</strong>
+							{{difficulty}}
+						</div>
+					</div>
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/team-group.svg" alt="Group size" /></div>
+							<strong>Group Size</strong>
+							{{group_size}}
+						</div>
+					</div>
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/hill.svg" alt="Maximum altitude" /></div>
+							<strong>Max Altitude</strong>
+							{{altitude}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Package Info Box -->
+
+			<div class="row clearfix">
+				<!-- Content Column -->
+				<div class="content-column col-xl-8 col-lg-7 col-md-12 col-sm-12">
+					<h5>About this trip</h5>
+					{{#intro}}<p>{{.}}</p>
+					{{/intro}}
+
+					<div class="feature-box">
+						<h5>Trip highlights</h5>
+						<ul class="feature-list">
+							{{#highlights}}<li>{{.}}</li>
+							{{/highlights}}
+						</ul>
+					</div>
+
+					<div class="feature-box">
+						<h5>What's included</h5>
+						<ul class="feature-list">
+							{{#included}}<li>{{.}}</li>
+							{{/included}}
+						</ul>
+					</div>
+
+					<div class="feature-box">
+						<h5>Not included</h5>
+						<ul class="feature-list">
+							{{#excluded}}<li>{{.}}</li>
+							{{/excluded}}
+						</ul>
+					</div>
+
+					<!-- Itinerary Box -->
+					<div class="itinerary-box">
+						<h5>Itinerary</h5>
+						<div class="days-outer">
+							{{#itinerary}}<div class="day-box">
+								<div class="title">{{day}} &ndash; {{title}}</div>
+								<div class="day-text">{{text}}</div>
+							</div>
+							{{/itinerary}}
+						</div>
+					</div>
+					<!-- End Itinerary Box -->
+
+					<!-- Gallery Box -->
+					<div class="gallery-box">
+						<h5>Gallery</h5>
+						<div class="single-item-carousel owl-carousel owl-theme">
+							{{#gallery}}<div class="slide">
+								<div class="image">
+									<img src="{{.}}" alt="{{../name}}" />
+								</div>
+							</div>
+							{{/gallery}}
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Sidebar Column -->
+				<div class="sidebar-column col-xl-4 col-lg-5 col-md-12 col-sm-12">
+					<div class="inner-column">
+
+						<!-- Booking Widget -->
+						<div class="sidebar-widget booking-widget" style="background-image: url(images/background/booking-bg.jpg);">
+							<h5>Enquire about this trip</h5>
+							<div class="booking-form">
+								<form class="enquiry-form" data-tour="{{name}}" novalidate>
+									<div class="form-group">
+										<input type="text" name="name" placeholder="Full Name" required>
+										<span class="icon fal fa-user fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<input type="tel" name="phone" placeholder="Phone / WhatsApp" required>
+										<span class="icon fal fa-phone fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<input type="text" class="datepicker" name="start_date" placeholder="Preferred start date" autocomplete="off">
+										<span class="icon fal fa-calendar fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<div class="item-quantity">
+											<div class="quantity-spinner">
+												<button type="button" class="minus"><span class="fa fa-minus"></span></button>
+												<input type="text" name="group_size" value="2" class="prod_qty" readonly />
+												<button type="button" class="plus"><span class="fa fa-plus"></span></button>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="theme-btn send-btn"><span class="txt">Send on WhatsApp <i class="fa fa-angle-right"></i></span></button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- Destination Widget -->
+						<div class="sidebar-widget category-widget">
+							<div class="sidebar-title">
+								<h5>Where you'll be</h5>
+							</div>
+							<ul class="sidebar-category-list">
+								<li style="background-image: url({{destination_image}})">
+									<a href="{{destination_href}}"><span class="txt">{{destination_name}}</span> <span class="number">&rarr;</span></a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Other Tours Widget -->
+						{{#related}}
+						<div class="sidebar-widget category-widget">
+							<div class="sidebar-title">
+								<h5>Other trips</h5>
+							</div>
+							<ul class="sidebar-category-list">
+								{{#items}}<li style="background-image: url({{image}})">
+									<a href="{{href}}"><span class="txt">{{name}}</span> <span class="number">{{duration}}</span></a>
+								</li>
+								{{/items}}
+							</ul>
+						</div>
+						{{/related}}
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>

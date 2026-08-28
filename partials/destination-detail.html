@@ -1,0 +1,154 @@
+<!--
+  Destination detail body. Rendered per destination by
+  scripts/build_pages.py from data/destinations.json into
+  partials/page-shell.html.
+
+  The "Trips in this area" list is built automatically from
+  data/tours.json - any tour whose "destination" matches this slug.
+-->
+<section class="package-detail-section">
+		<div class="auto-container">
+
+			<!-- Upper Box -->
+			<div class="upper-box">
+				<div class="clearfix">
+					<div class="pull-left">
+						<h4>{{name}}</h4>
+					</div>
+					<div class="pull-right">
+						<div class="price">{{tour_count}}<span>&nbsp;trips</span></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Info Box -->
+			<div class="package-info-box">
+				<div class="inner-container d-flex justify-content-between align-items-center">
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/duration.svg" alt="Best season" /></div>
+							<strong>Best Season</strong>
+							{{best_season}}
+						</div>
+					</div>
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/hill.svg" alt="Altitude" /></div>
+							<strong>Altitude</strong>
+							{{altitude}}
+						</div>
+					</div>
+					<div class="package-info-block">
+						<div class="inner-box">
+							<div class="icon"><img src="images/icons/team-group.svg" alt="Trips available" /></div>
+							<strong>Trips</strong>
+							{{tour_count}} available
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Info Box -->
+
+			<div class="row clearfix">
+				<!-- Content Column -->
+				<div class="content-column col-xl-8 col-lg-7 col-md-12 col-sm-12">
+					<h5>About {{name}}</h5>
+					{{#intro}}<p>{{.}}</p>
+					{{/intro}}
+
+					<div class="feature-box">
+						<h5>What to see</h5>
+						<ul class="feature-list">
+							{{#highlights}}<li>{{.}}</li>
+							{{/highlights}}
+						</ul>
+					</div>
+
+					<!-- Trips here -->
+					<div class="itinerary-box">
+						<h5>Trips in this area</h5>
+						<div class="days-outer">
+							{{#tours}}<div class="day-box">
+								<div class="title"><a href="{{href}}">{{name}}</a></div>
+								<div class="day-text">{{summary}}<br><strong>{{duration}} &middot; {{difficulty}} &middot; from {{price}}</strong> &ensp; <a href="{{href}}">View trip &rarr;</a></div>
+							</div>
+							{{/tours}}
+							{{^tours}}<div class="day-box">
+								<div class="title">Nothing scheduled yet</div>
+								<div class="day-text">We run private and custom trips here on request. <a href="booking.html">Tell us what you have in mind</a> and we will put an itinerary together.</div>
+							</div>
+							{{/tours}}
+						</div>
+					</div>
+
+					<!-- Gallery Box -->
+					<div class="gallery-box">
+						<h5>Gallery</h5>
+						<div class="single-item-carousel owl-carousel owl-theme">
+							{{#gallery}}<div class="slide">
+								<div class="image">
+									<img src="{{.}}" alt="{{../name}}" />
+								</div>
+							</div>
+							{{/gallery}}
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Sidebar Column -->
+				<div class="sidebar-column col-xl-4 col-lg-5 col-md-12 col-sm-12">
+					<div class="inner-column">
+
+						<!-- Booking Widget -->
+						<div class="sidebar-widget booking-widget" style="background-image: url(images/background/booking-bg.jpg);">
+							<h5>Plan a trip here</h5>
+							<div class="booking-form">
+								<form class="enquiry-form" data-destination="{{name}}" novalidate>
+									<div class="form-group">
+										<input type="text" name="name" placeholder="Full Name" required>
+										<span class="icon fal fa-user fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<input type="tel" name="phone" placeholder="Phone / WhatsApp" required>
+										<span class="icon fal fa-phone fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<input type="text" class="datepicker" name="start_date" placeholder="Preferred start date" autocomplete="off">
+										<span class="icon fal fa-calendar fa-fw"></span>
+									</div>
+									<div class="form-group">
+										<div class="item-quantity">
+											<div class="quantity-spinner">
+												<button type="button" class="minus"><span class="fa fa-minus"></span></button>
+												<input type="text" name="group_size" value="2" class="prod_qty" readonly />
+												<button type="button" class="plus"><span class="fa fa-plus"></span></button>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="theme-btn send-btn"><span class="txt">Send on WhatsApp <i class="fa fa-angle-right"></i></span></button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- Other Destinations -->
+						<div class="sidebar-widget category-widget">
+							<div class="sidebar-title">
+								<h5>Other areas</h5>
+							</div>
+							<ul class="sidebar-category-list">
+								{{#others}}<li style="background-image: url({{image}})">
+									<a href="{{href}}"><span class="txt">{{name}}</span> <span class="number">&rarr;</span></a>
+								</li>
+								{{/others}}
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
