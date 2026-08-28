@@ -2,7 +2,10 @@
 .DS_Store
 ._*
 
-# Repo-only files, not part of the served site
+# Repo-only files, not part of the served site.
+# partials/ and scripts/ are the source of the shared chrome; they are
+# stamped into the .html files by scripts/propagate.py and are never served.
 .gitignore
 scripts/
+partials/
 *.md
