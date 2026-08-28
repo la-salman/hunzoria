@@ -1,0 +1,54 @@
+{
+  "_README": [
+    "Guides and staff shown on team.html and in the team strip on about.html.",
+    "Edit here, then run:  python3 scripts/build_listings.py",
+    "",
+    "NAMES AND ROLES ARE PLACEHOLDERS - replace with the real team before launch.",
+    "'phone' becomes a tel: link on the card; use international format.",
+    "Photos are still template stock images (see Phase 5)."
+  ],
+  "team": [
+    {
+      "name": "Karim Ali",
+      "role": "Founder & Lead Guide",
+      "image": "images/resource/team-1.jpg",
+      "phone": "+923000000001",
+      "bio": "Born in Karimabad. Twenty years guiding in Hunza and Gojal, and the person who answers most of your WhatsApp messages."
+    },
+    {
+      "name": "Shahida Baig",
+      "role": "Operations Manager",
+      "image": "images/resource/team-2.jpg",
+      "phone": "+923000000002",
+      "bio": "Handles permits, logistics and the jeep drivers. If your trip runs on time, it is because of her."
+    },
+    {
+      "name": "Amir Hussain",
+      "role": "High-Altitude Guide",
+      "image": "images/resource/team-3.jpg",
+      "phone": "+923000000003",
+      "bio": "Certified high-altitude guide. Has walked to Concordia more times than he can accurately count."
+    },
+    {
+      "name": "Zeeshan Karim",
+      "role": "Trekking Guide",
+      "image": "images/resource/team-4.jpg",
+      "phone": "+923000000004",
+      "bio": "Rakaposhi, Rush Lake and the Nagar side. Wilderness first aid trained."
+    },
+    {
+      "name": "Nasreen Jan",
+      "role": "Guest Relations",
+      "image": "images/resource/team-5.jpg",
+      "phone": "+923000000005",
+      "bio": "Looks after guests before, during and after the trip, and arranges homestays in the villages."
+    },
+    {
+      "name": "Iqbal Shah",
+      "role": "Driver & Fixer",
+      "image": "images/resource/team-6.jpg",
+      "phone": "+923000000006",
+      "bio": "Knows the Karakoram Highway in every condition, and which side road is open today."
+    }
+  ]
+}

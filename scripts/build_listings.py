@@ -221,6 +221,69 @@ def booking_form(tours: list[dict], activities: list[dict]) -> str:
 {i}</form>"""
 
 
+# The homepage masonry uses a fixed sequence of column widths; keep it so
+# Isotope still lays the tiles out the way the theme intends.
+MASONRY_COLS = [
+    "col-lg-8 col-md-12 col-sm-12",
+    "column-width col-lg-4 col-md-6 col-sm-12",
+    "col-lg-6 col-md-6 col-sm-12",
+    "col-lg-6 col-md-6 col-sm-12",
+    "column-width col-lg-4 col-md-6 col-sm-12",
+    "col-lg-8 col-md-12 col-sm-12",
+]
+
+
+def masonry_destinations(destinations: list[dict], counts: dict[str, int]) -> str:
+    """Homepage 'Trending Destinations' tiles.
+
+    Shipped as six identical 'Rajasthan' tiles all linking to href="#".
+    """
+    i = " " * 20
+    out = []
+    for n, d in enumerate(destinations[: len(MASONRY_COLS)]):
+        href = f"destination-{d['slug']}.html"
+        count = counts.get(d["slug"], 0)
+        label = "Trip" if count == 1 else "Trips"
+        out.append(
+            f"""{i}<!--Block-->
+{i}<div class="dest-block-one masonry-item {MASONRY_COLS[n]}">
+{i}    <div class="inner-box">
+{i}        <div class="image-box"><a href="{href}"><img src="{esc(d['image'])}" alt="{esc(d['name'])}"></a></div>
+{i}        <div class="hvr-box">
+{i}            <div class="cap-box">
+{i}                <div class="cap-inner clearfix">
+{i}                    <h4><a href="{href}">{esc(d['name'])}</a></h4>
+{i}                    <div class="tour-count"><span>{count} {label}</span></div>
+{i}                </div>
+{i}            </div>
+{i}        </div>
+{i}    </div>
+{i}</div>"""
+        )
+    return "\n".join(out)
+
+
+def team_card(person: dict) -> str:
+    """Guide card. Shipped as six 'Andree Hoy / Tour Guide' cards whose photo,
+    name and call button all pointed at href="#"."""
+    i = " " * 20
+    return f"""{i}<!--Block-->
+{i}<div class="team-block-one col-lg-4 col-md-6 col-sm-12">
+{i}    <div class="inner-box">
+{i}        <div class="image-box">
+{i}            <div class="image"><a href="team-member.html"><img src="{esc(person['image'])}" alt="{esc(person['name'])}, {esc(person['role'])}" title="{esc(person['name'])}"></a></div>
+{i}        </div>
+{i}        <div class="lower-box">
+{i}            <h4><a href="team-member.html">{esc(person['name'])}</a></h4>
+{i}            <div class="designation">{esc(person['role'])}</div>
+{i}            <div class="phone">
+{i}                <a href="tel:{esc(person['phone'])}" class="theme-btn call-btn" aria-label="Call {esc(person['name'])}"><i class="icon"><img src="images/icons/phone-call.svg" alt="" title=""></i></a>
+{i}            </div>
+{i}        </div>
+{i}    </div>
+{i}</div>"""
+
+
 def contact_form() -> str:
     """General contact form. Same WhatsApp handoff as the booking form, but
     without the trip picker - people land here with questions, not bookings."""
@@ -329,6 +392,19 @@ def build(check_only: bool) -> int:
     src = replace_inner(src, "tour-grid", cards)
     edits.append(("tours.html", src))
 
+    # ---- team cards -----------------------------------------------------
+    team = load("team.json")["team"]
+    cards = "\n".join(team_card(p) for p in team)
+    for name, container in (
+        ("team.html", "row clearfix"),
+        ("about.html", "team-carousel"),
+        ("team-member.html", "team-carousel"),
+    ):
+        src = (ROOT / name).read_text(encoding="utf-8")
+        occurrence = _grid_index(src, "team-block-one", container)
+        src = replace_inner(src, container, cards, occurrence=occurrence)
+        edits.append((name, src))
+
     # ---- booking.html enquiry form --------------------------------------
     src = (ROOT / "booking.html").read_text(encoding="utf-8")
     src = replace_inner(src, "booking-form", booking_form(tours, activities))
@@ -347,6 +423,7 @@ def build(check_only: bool) -> int:
     src = (ROOT / "index.html").read_text(encoding="utf-8")
     cards = "\n".join(tour_card(t, "") for t in tours[:6])
     src = replace_inner(src, "popular-carousel", cards)
+    src = replace_inner(src, "masonry-container", masonry_destinations(destinations, counts))
     edits.append(("index.html", src))
 
     # ---- write ----------------------------------------------------------
@@ -367,19 +444,30 @@ def build(check_only: bool) -> int:
     return 1 if (check_only and stale) else 0
 
 
-def _activity_grid_index(src: str) -> int:
-    """activities.html has several `row clearfix` divs; find the one holding the cards."""
-    target = src.find('class="activity-block-one')
+def _grid_index(src: str, card_class: str, container_class: str) -> int:
+    """Find which `container_class` element actually holds the cards.
+
+    Pages use generic wrappers like "row clearfix" many times over, so match by
+    which one encloses the first card rather than by position.
+    """
+    target = src.find('class="' + card_class)
     if target == -1:
-        target = src.find("<!--Block-->")
-    for i, m in enumerate(re.finditer(r'<div class="row clearfix"[^>]*>', src)):
+        raise KeyError(f"no {card_class} card found")
+    i = 0
+    while True:
         try:
-            a, b = container_span(src, "row clearfix", i)
+            a, b = container_span(src, container_class, i)
+        except IndexError:
+            raise KeyError(f"could not locate the {card_class} grid")
         except (KeyError, ValueError):
-            continue
+            raise KeyError(f"could not locate the {card_class} grid")
         if a <= target <= b:
             return i
-    raise KeyError("activities.html: could not locate the card grid")
+        i += 1
+
+
+def _activity_grid_index(src: str) -> int:
+    return _grid_index(src, "activity-block-one", "row clearfix")
 
 
 if __name__ == "__main__":

@@ -203,6 +203,13 @@ def render(src: str, page_name: str, nav_items: str, footer: str) -> str:
     for stale in ("<!--Cart Sidebar-->", "<!-- Cart Sidebar -->"):
         src = src.replace(stale, "")
 
+    # 4a. Logo still carried the template's brand in title/alt attributes.
+    src = re.sub(
+        r'<a href="index\.html" title="Treker"><img src="images/logo\.svg" alt="[^"]*" title="Treker"></a>',
+        '<a href="index.html" title="Hunzoria"><img src="images/logo.svg" alt="Hunzoria" title="Hunzoria"></a>',
+        src,
+    )
+
     # 4b. Header-top contact strip still carried the template's details
     #     (INFO@TREKER.COM and a made-up phone number).
     src = re.sub(
