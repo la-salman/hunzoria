@@ -15,6 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="css/responsive.css" rel="stylesheet">
+<link href="css/hunzoria.css" rel="stylesheet">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]--> 
 
 </head>
@@ -24,7 +25,7 @@
   
     <!-- Preloader -->
     <div class="preloader"></div> 
-    <div class="search-backdrop"></div>
+    
     <!-- Main Header-->
     <header class="main-header header-style-two">
         <!-- Header Upper -->
@@ -80,21 +81,6 @@
                     </div>
 
                     <!-- End Header Upper -->
-                    <div class="search-box">
-                        <div class="outer-container">
-                            <div class="inner-box">
-                                <div class="form-box">
-                                    <div class="s-close-btn"><span class="icon far fa-times"></span></div>
-                                    <span class="s-icon fa fa-search"></span>
-                                    <form method="post" action="index.html">
-                                        <div class="form-group">
-                                            <input type="search" name="search" value="" placeholder="Search Here" required="">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -103,7 +89,6 @@
     <!--End Main Header -->
 
     <!--Search Backdrop-->
-    <div class="search-backdrop"></div>
 
     <!--Menu Backdrop-->
     <div class="menu-backdrop"></div>
@@ -181,94 +166,76 @@
             </div>
             <div class="form-box site-form">
                 <div class="booking-form">
-                    <form method="post" action="contact.html">
+                    <form class="enquiry-form" novalidate>
                         <div class="row clearfix">
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                 <div class="f-label">Your Name <i>*</i></div>
                                 <div class="field-inner">
-                                    <input type="text" name="fieldname" value="" placeholder="" required>
+                                    <input type="text" name="name" placeholder="Full name" required>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Your Email <i>*</i></div>
+                                <div class="f-label">Phone / WhatsApp <i>*</i></div>
                                 <div class="field-inner">
-                                    <input type="email" name="fieldname" value="" placeholder="" required>
+                                    <input type="tel" name="phone" placeholder="e.g. +92 301 234 5678" required>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Your Phone <i>*</i></div>
+                                <div class="f-label">Email</div>
                                 <div class="field-inner">
-                                    <input type="text" name="fieldname" value="" placeholder="" required>
+                                    <input type="email" name="email" placeholder="Optional">
                                 </div>
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Country <i>*</i></div>
+                                <div class="f-label">Which trip?</div>
                                 <div class="field-inner">
-                                    <select>
-                                        <option>USA</option>
-                                        <option>China</option>
-                                        <option>Russia</option>
-                                        <option>UK</option>
-                                        <option>France</option>
-                                        <option>Germany</option>
+                                    <select name="trip">
+                                        <option value="">-- choose a trip (or leave blank) --</option>
+                                        <optgroup label="Multi-day trips">
+                                        <option value="hunza-valley-explorer">Hunza Valley Explorer &ndash; 7 Days</option>
+                                        <option value="skardu-deosai-expedition">Skardu and Deosai Plains &ndash; 8 Days</option>
+                                        <option value="fairy-meadows-nanga-parbat">Fairy Meadows and Nanga Parbat Base Camp &ndash; 6 Days</option>
+                                        <option value="rakaposhi-base-camp-trek">Rakaposhi Base Camp Trek &ndash; 5 Days</option>
+                                        <option value="passu-glacier-hussaini-bridge">Passu Glacier and Hussaini Bridge &ndash; 2 Days</option>
+                                        <option value="khunjerab-pass-border">Khunjerab Pass and the China Border &ndash; 3 Days</option>
+                                        <option value="naltar-valley-winter">Naltar Valley Winter and Ski Week &ndash; 6 Days</option>
+                                        <option value="k2-base-camp-concordia">K2 Base Camp and Concordia Trek &ndash; 18 Days</option>
+                                        </optgroup>
+                                        <optgroup label="Day experiences">
+                                        <option value="hussaini-bridge">Hussaini Suspension Bridge &ndash; Half day</option>
+                                        <option value="attabad-boating">Attabad Lake Boating &ndash; Half day</option>
+                                        <option value="naltar-skiing">Skiing at Naltar &ndash; Full day</option>
+                                        <option value="hopper-glacier">Hopper Glacier Walk &ndash; Full day</option>
+                                        <option value="cherry-blossom-walk">Blossom Season Walks &ndash; Half day</option>
+                                        <option value="phander-trout-fishing">Trout Fishing at Phander &ndash; Full day</option>
+                                        </optgroup>
+                                        <option value="custom">Something custom / not sure yet</option>
                                     </select>
                                     <span class="alt-icon far fa-angle-down"></span>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Choose Time <i>*</i></div>
+                                <div class="f-label">Preferred start date</div>
                                 <div class="field-inner">
-                                    <select>
-                                        <option>10:00 am</option>
-                                        <option>11:00 am</option>
-                                        <option>12:00 am</option>
-                                        <option>01:00 pm</option>
-                                        <option>02:00 pm</option>
-                                        <option>03:00 pm</option>
-                                        <option>04:00 pm</option>
-                                        <option>05:00 pm</option>
-                                    </select>
-                                    <span class="alt-icon far fa-angle-down"></span>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Date From <i>*</i></div>
-                                <div class="field-inner">
-                                    <input type="text" class="datepicker" name="fieldname" value="" placeholder="" required>
+                                    <input type="text" class="datepicker" name="start_date" placeholder="DD - MM - YYYY" autocomplete="off">
                                     <span class="alt-icon fal fa-calendar fa-fw"></span>
                                 </div>
                             </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Number of Guest <i>*</i></div>
+                                <div class="f-label">Group size</div>
                                 <div class="field-inner">
-                                    <input type="text" name="fieldname" value="" placeholder="" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                <div class="f-label">Number of Children <i>*</i></div>
-                                <div class="field-inner">
-                                    <input type="text" name="fieldname" value="" placeholder="" required>
+                                    <input type="number" name="group_size" value="2" min="1" max="40">
                                 </div>
                             </div>
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <h6>Add Extra</h6>
-                                <div class="radio-group">
-                                    <div class="radio-block">
-                                        <input type="radio" name="radio-1" id="radio-1">
-                                        <label for="radio-1">Service per booking</label>
-                                    </div>
-                                    <div class="radio-block">
-                                        <input type="radio" name="radio-1" id="radio-2">
-                                        <label for="radio-2">Service per booking</label>
-                                    </div>
-                                </div>
-                                <div class="rates clearfix">
-                                    <div class="rate-block">Adult: <span class="price">$120</span></div>
-                                    <div class="rate-block">Children: <span class="price">$50</span></div>
+                                <div class="f-label">Anything we should know?</div>
+                                <div class="field-inner">
+                                    <textarea name="message" rows="4" placeholder="Fitness level, dietary needs, dates you cannot move, questions..."></textarea>
                                 </div>
                             </div>
                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                                <button type="submit" class="theme-btn btn-style-two"><span>Submit Now<i class="icon far fa-angle-right"></i></span></button>
+                                <button type="submit" class="theme-btn btn-style-two"><span>Send on WhatsApp<i class="icon far fa-angle-right"></i></span></button>
+                                <div class="text" style="margin-top:15px;">This opens WhatsApp with your details already filled in. Nothing is sent until you press send there.</div>
                             </div>
                         </div>
                     </form>
@@ -542,5 +509,11 @@
 <script src="js/owl.js"></script>
 <script src="js/wow.js"></script>
 <script src="js/custom-script.js"></script>
+<script src="js/inquiry.js"></script>
+
+<!-- CHROME:WHATSAPP (managed by scripts/propagate.py) -->
+<a href="https://wa.me/923000000000" data-wa-float class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Hunzoria on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 </body>
 </html>

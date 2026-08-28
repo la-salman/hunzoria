@@ -88,6 +88,16 @@ SIDEBAR_CTA_BLOCK = """<div class="links-box clearfix">
             </div>"""
 
 
+# Floating WhatsApp button, added to every page before </body>.
+# The href here is a no-JS fallback; js/inquiry.js rewrites it from its own
+# WHATSAPP_NUMBER constant so the number is only maintained in one place.
+WHATSAPP_FLOAT = """
+<!-- CHROME:WHATSAPP (managed by scripts/propagate.py) -->
+<a href="https://wa.me/923000000000" data-wa-float class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with Hunzoria on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>"""
+
+
 def find_element(src: str, start_idx: int, tag: str) -> int:
     """Return the index just past the element opened at start_idx, honouring nesting."""
     depth = 0
@@ -171,12 +181,16 @@ def render(src: str, page_name: str, nav_items: str, footer: str) -> str:
         end = find_element(src, start, "div")
         src = src[:start] + (CTA_BLOCK if idx == 0 else SIDEBAR_CTA_BLOCK) + src[end:]
 
-    # 4. Remove shop/auth leftovers.
+    # 4. Remove shop/auth/search leftovers. The search box has no button to
+    #    open it any more, and site search cannot work without a backend or a
+    #    client-side index, so the markup goes too.
     for marker, tag in (
         ('<div class="cart-sidebar">', "div"),
         ('<div class="cart-backdrop"></div>', None),
         ('<div class="lang-box">', "div"),
         ('<div class="login">', "div"),
+        ('<div class="search-box">', "div"),
+        ('<div class="search-backdrop"></div>', None),
     ):
         while True:
             k = src.find(marker)
@@ -188,6 +202,39 @@ def render(src: str, page_name: str, nav_items: str, footer: str) -> str:
     # Drop the now-meaningless comments the removed blocks left behind.
     for stale in ("<!--Cart Sidebar-->", "<!-- Cart Sidebar -->"):
         src = src.replace(stale, "")
+
+    # 4b. Header-top contact strip still carried the template's details
+    #     (INFO@TREKER.COM and a made-up phone number).
+    src = re.sub(
+        r'<ul class="info clearfix">.*?</ul>',
+        '<ul class="info clearfix">\n'
+        '                            <li><i class="icon fa fa-envelope"></i> '
+        '<a href="mailto:hello@hunzoria.com">hello@hunzoria.com</a></li>\n'
+        '                            <li><i class="icon fa fa-phone-circle"></i> '
+        '<a href="tel:+923000000000">+92 300 000 0000</a></li>\n'
+        '                        </ul>',
+        src,
+        count=1,
+        flags=re.DOTALL,
+    )
+
+    # 5. Site-specific stylesheet, loaded last so it overrides the vendor CSS.
+    if "css/hunzoria.css" not in src and 'href="css/responsive.css"' in src:
+        src = src.replace(
+            '<link href="css/responsive.css" rel="stylesheet">',
+            '<link href="css/responsive.css" rel="stylesheet">\n<link href="css/hunzoria.css" rel="stylesheet">',
+            1,
+        )
+
+    # 6. Enquiry handling: js/inquiry.js plus the floating WhatsApp button.
+    if "js/inquiry.js" not in src and "js/custom-script.js" in src:
+        src = src.replace(
+            '<script src="js/custom-script.js"></script>',
+            '<script src="js/custom-script.js"></script>\n<script src="js/inquiry.js"></script>',
+            1,
+        )
+    if "data-wa-float" not in src and "</body>" in src:
+        src = src.replace("</body>", WHATSAPP_FLOAT + "\n</body>", 1)
 
     # Tidy the blank lines those removals leave behind. Repeat to a fixed
     # point, otherwise a second run of this script would keep finding more

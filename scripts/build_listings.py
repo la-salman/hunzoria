@@ -144,6 +144,121 @@ def activity_card(a: dict) -> str:
 {IND}</div>"""
 
 
+def booking_form(tours: list[dict], activities: list[dict]) -> str:
+    """The main enquiry form on booking.html.
+
+    The trip <select> is generated so it can never drift from the trips that
+    actually have pages. Option values are slugs, which is what
+    js/inquiry.js matches against ?tour= / ?activity= in the URL.
+    """
+    def options() -> str:
+        out = ['<option value="">-- choose a trip (or leave blank) --</option>']
+        out.append('<optgroup label="Multi-day trips">')
+        for t in tours:
+            out.append(f'<option value="{esc(t["slug"])}">{esc(t["name"])} &ndash; {esc(t["duration"])}</option>')
+        out.append("</optgroup>")
+        out.append('<optgroup label="Day experiences">')
+        for a in activities:
+            out.append(f'<option value="{esc(a["slug"])}">{esc(a["name"])} &ndash; {esc(a["duration"])}</option>')
+        out.append("</optgroup>")
+        out.append('<option value="custom">Something custom / not sure yet</option>')
+        return ("\n" + " " * 40).join(out)
+
+    i = " " * 20
+    return f"""{i}<form class="enquiry-form" novalidate>
+{i}    <div class="row clearfix">
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Your Name <i>*</i></div>
+{i}            <div class="field-inner">
+{i}                <input type="text" name="name" placeholder="Full name" required>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Phone / WhatsApp <i>*</i></div>
+{i}            <div class="field-inner">
+{i}                <input type="tel" name="phone" placeholder="e.g. +92 301 234 5678" required>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Email</div>
+{i}            <div class="field-inner">
+{i}                <input type="email" name="email" placeholder="Optional">
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Which trip?</div>
+{i}            <div class="field-inner">
+{i}                <select name="trip">
+{" " * 40}{options()}
+{i}                </select>
+{i}                <span class="alt-icon far fa-angle-down"></span>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Preferred start date</div>
+{i}            <div class="field-inner">
+{i}                <input type="text" class="datepicker" name="start_date" placeholder="DD - MM - YYYY" autocomplete="off">
+{i}                <span class="alt-icon fal fa-calendar fa-fw"></span>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Group size</div>
+{i}            <div class="field-inner">
+{i}                <input type="number" name="group_size" value="2" min="1" max="40">
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+{i}            <div class="f-label">Anything we should know?</div>
+{i}            <div class="field-inner">
+{i}                <textarea name="message" rows="4" placeholder="Fitness level, dietary needs, dates you cannot move, questions..."></textarea>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+{i}            <button type="submit" class="theme-btn btn-style-two"><span>Send on WhatsApp<i class="icon far fa-angle-right"></i></span></button>
+{i}            <div class="text" style="margin-top:15px;">This opens WhatsApp with your details already filled in. Nothing is sent until you press send there.</div>
+{i}        </div>
+{i}    </div>
+{i}</form>"""
+
+
+def contact_form() -> str:
+    """General contact form. Same WhatsApp handoff as the booking form, but
+    without the trip picker - people land here with questions, not bookings."""
+    i = " " * 20
+    return f"""{i}<form class="enquiry-form" novalidate>
+{i}    <div class="row clearfix">
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Your Name <i>*</i></div>
+{i}            <div class="field-inner">
+{i}                <input type="text" name="name" placeholder="Full name" required>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+{i}            <div class="f-label">Phone / WhatsApp <i>*</i></div>
+{i}            <div class="field-inner">
+{i}                <input type="tel" name="phone" placeholder="e.g. +92 301 234 5678" required>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+{i}            <div class="f-label">Email</div>
+{i}            <div class="field-inner">
+{i}                <input type="email" name="email" placeholder="Optional">
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+{i}            <div class="f-label">Your message <i>*</i></div>
+{i}            <div class="field-inner">
+{i}                <textarea name="message" rows="5" placeholder="How can we help?" required></textarea>
+{i}            </div>
+{i}        </div>
+{i}        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+{i}            <button type="submit" class="theme-btn btn-style-two"><span>Send on WhatsApp<i class="icon far fa-angle-right"></i></span></button>
+{i}            <div class="text" style="margin-top:15px;">This opens WhatsApp with your message already written. Nothing is sent until you press send there.</div>
+{i}        </div>
+{i}    </div>
+{i}</form>"""
+
+
 def filter_buttons(pairs: list[tuple[str, str]], all_label: str) -> str:
     ind = " " * 20
     out = [f'{ind}<li class="filter active" data-role="button" data-filter="all">{all_label}</li>']
@@ -213,6 +328,18 @@ def build(check_only: bool) -> int:
     cards = "\n".join(tour_card(t) for t in tours)
     src = replace_inner(src, "tour-grid", cards)
     edits.append(("tours.html", src))
+
+    # ---- booking.html enquiry form --------------------------------------
+    src = (ROOT / "booking.html").read_text(encoding="utf-8")
+    src = replace_inner(src, "booking-form", booking_form(tours, activities))
+    edits.append(("booking.html", src))
+
+    # ---- contact.html enquiry form --------------------------------------
+    # Shipped with every field named "fieldname" and posting to contact.html,
+    # so it silently discarded whatever anyone typed.
+    src = (ROOT / "contact.html").read_text(encoding="utf-8")
+    src = replace_inner(src, "contact-form", contact_form())
+    edits.append(("contact.html", src))
 
     # ---- index.html featured carousel -----------------------------------
     # Shipped pointing at packages.html for every card; now shows six real

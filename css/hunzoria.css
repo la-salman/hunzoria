@@ -1,0 +1,127 @@
+/*
+ * Hunzoria site-specific styles.
+ *
+ * Loaded after style.css and responsive.css, so anything here wins. Keep the
+ * vendor template stylesheets untouched - put every local override in this
+ * file, otherwise the next theme update wipes them out.
+ */
+
+/* --------------------------------------------------------------------------
+   Floating WhatsApp button (added to every page by scripts/propagate.py)
+   -------------------------------------------------------------------------- */
+.whatsapp-float {
+    position: fixed;
+    right: 25px;
+    bottom: 95px; /* clear of the scroll-to-top button */
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+    background: #1da851;
+    color: #fff;
+    transform: scale(1.06);
+}
+
+.whatsapp-float:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .whatsapp-float {
+        right: 15px;
+        bottom: 80px;
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float {
+        transition: none;
+    }
+    .whatsapp-float:hover,
+    .whatsapp-float:focus {
+        transform: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Enquiry forms
+   -------------------------------------------------------------------------- */
+
+/* The template styles inputs and selects but not textareas in .site-form. */
+.site-form textarea {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #666666;
+    resize: vertical;
+}
+
+.site-form textarea:focus {
+    border-color: #b5b5b5;
+    outline: none;
+}
+
+/* Sidebar booking widgets sit on a photo; keep the helper text readable. */
+.booking-widget .text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+}
+
+/* --------------------------------------------------------------------------
+   Detail pages
+   -------------------------------------------------------------------------- */
+
+/* Itinerary day titles carry links on destination pages. */
+.itinerary-box .day-box .title a {
+    color: inherit;
+}
+
+.itinerary-box .day-box .title a:hover {
+    text-decoration: underline;
+}
+
+/* The sidebar category list is a link list on generated pages. */
+.sidebar-category-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility
+   -------------------------------------------------------------------------- */
+
+/* The template removes focus outlines in places; put a visible one back. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #f5a623;
+    outline-offset: 2px;
+}
