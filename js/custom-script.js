@@ -4,12 +4,17 @@
 	
 	
 	//Hide Loading Box (Preloader)
+	// Hunzoria: hide the loader as soon as the page structure is ready instead
+	// of waiting for every image and font (window "load"), which kept a blank
+	// white screen up for seconds on slower connections. Images keep loading
+	// in the background. Safe to call more than once.
 	function handlePreloader() {
-		if($('.preloader').length){
+		if($('.preloader').length && !$('body').hasClass('page-loaded')){
 			$('body').addClass('page-loaded');
-			$('.preloader').delay(0).fadeOut(0);
+			$('.preloader').fadeOut(400);
 		}
 	}
+	$(handlePreloader);
 	
 	
 	//Update Header Style and Scroll to Top
@@ -485,6 +490,12 @@
 			var winDow = $(window);
 			// Needed variables
 			var $container=$('.masonry-container');
+
+			// Images are lazy-loaded, so some arrive after this first layout.
+			// Re-run the layout as each one lands so tiles never overlap.
+			$container.find('img').on('load', function(){
+				if($container.data('isotope')){ $container.isotope('layout'); }
+			});
 
 			$container.isotope({
 				itemSelector: '.masonry-item',

@@ -16,6 +16,8 @@ So this splits the images in two:
   - content    -> a real description, from the data files where we have one
 
 Anything not recognised is reported rather than guessed at.
+
+It also marks below-the-fold images loading="lazy" (see ABOVE_FOLD).
 """
 
 from __future__ import annotations
@@ -68,6 +70,20 @@ CONTENT = {
 
 IMG = re.compile(r'<img\b[^>]*>')
 
+# Images visible the moment a page opens. These load immediately; everything
+# else gets loading="lazy" so the browser only fetches it when the visitor
+# scrolls near it.
+ABOVE_FOLD = ("logo.svg", "menu-icon", "main-slider/")
+
+
+def add_lazy(tag: str) -> str:
+    m = re.search(r'src="([^"]*)"', tag)
+    if not m or "loading=" in tag:
+        return tag
+    if any(frag in m.group(1) for frag in ABOVE_FOLD):
+        return tag
+    return tag.replace("<img", '<img loading="lazy" decoding="async"', 1)
+
 
 def describe(src_path: str) -> str | None:
     name = src_path.rsplit("/", 1)[-1]
@@ -118,7 +134,7 @@ def main() -> int:
 
     for path in sorted(ROOT.glob("*.html")):
         src = path.read_text(encoding="utf-8")
-        updated = IMG.sub(lambda m: fix_tag(m.group(0), unknown), src)
+        updated = IMG.sub(lambda m: add_lazy(fix_tag(m.group(0), unknown)), src)
         if updated != src:
             stale.append(path.name)
             if not check_only:
