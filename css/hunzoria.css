@@ -155,3 +155,20 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
     .preloader::after { animation-duration: 2.4s; }
 }
+
+/* --------------------------------------------------------------------------
+   Lazy images fade in (classes set by js/custom-script.js)
+   -------------------------------------------------------------------------- */
+img.lazy-fade {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+img.lazy-fade.lazy-done {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wow { animation: none !important; visibility: visible !important; }
+    img.lazy-fade { transition: none; }
+}

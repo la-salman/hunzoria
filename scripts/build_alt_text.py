@@ -76,13 +76,59 @@ IMG = re.compile(r'<img\b[^>]*>')
 ABOVE_FOLD = ("logo.svg", "menu-icon", "main-slider/")
 
 
+_SIZE_CACHE: dict = {}
+
+
+def image_size(src_path: str) -> tuple[int, int] | None:
+    """Intrinsic (width, height) of a local image, or None if unknown."""
+    if src_path in _SIZE_CACHE:
+        return _SIZE_CACHE[src_path]
+    path = ROOT / src_path
+    size = None
+    if path.is_file():
+        if path.suffix.lower() == ".svg":
+            head = path.read_text(encoding="utf-8", errors="ignore")[:4000]
+            root = re.search(r"<svg\b[^>]*>", head)
+            if root:
+                w = re.search(r'\swidth="([\d.]+)(?:px)?"', root.group(0))
+                h = re.search(r'\sheight="([\d.]+)(?:px)?"', root.group(0))
+                vb = re.search(r'viewBox="[\d.\-]+[ ,]+[\d.\-]+[ ,]+([\d.]+)[ ,]+([\d.]+)"', root.group(0))
+                if w and h:
+                    size = (round(float(w.group(1))), round(float(h.group(1))))
+                elif vb:
+                    size = (round(float(vb.group(1))), round(float(vb.group(2))))
+        else:
+            try:
+                from PIL import Image
+                with Image.open(path) as im:
+                    size = im.size
+            except Exception:
+                size = None
+    _SIZE_CACHE[src_path] = size
+    return size
+
+
 def add_lazy(tag: str) -> str:
+    """Lazy-load below-the-fold images and reserve their space.
+
+    width/height match the file's own size, so with the theme's global
+    `img { max-width: 100%; height: auto }` they change nothing visually -
+    they only let the browser hold the right amount of room before the
+    image arrives, so the page doesn't jump while scrolling.
+    """
     m = re.search(r'src="([^"]*)"', tag)
-    if not m or "loading=" in tag:
+    if not m:
         return tag
-    if any(frag in m.group(1) for frag in ABOVE_FOLD):
+    src_path = m.group(1)
+    if any(frag in src_path for frag in ABOVE_FOLD):
         return tag
-    return tag.replace("<img", '<img loading="lazy" decoding="async"', 1)
+    if "loading=" not in tag:
+        tag = tag.replace("<img", '<img loading="lazy" decoding="async"', 1)
+    if "width=" not in tag and "height=" not in tag:
+        size = image_size(src_path)
+        if size and size[0] > 0 and size[1] > 0:
+            tag = tag.replace("<img", f'<img width="{size[0]}" height="{size[1]}"', 1)
+    return tag
 
 
 def describe(src_path: str) -> str | None:

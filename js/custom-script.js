@@ -18,21 +18,42 @@
 	
 	
 	//Update Header Style and Scroll to Top
+	// Hunzoria: this runs on every scroll event, so it only touches the page
+	// when the state actually flips (top of page <-> scrolled). The original
+	// re-applied the class and queued a new fade ~60 times a second.
+	var headerIsFixed = null;
 	function headerStyle() {
 		if($('.main-header').length){
-			var windowpos = $(window).scrollTop();
+			var fixed = $(window).scrollTop() >= 1;
+			if (fixed === headerIsFixed) { return; }
+			headerIsFixed = fixed;
 			var siteHeader = $('.main-header');
 			var scrollLink = $('.scroll-to-top');
-			if (windowpos >= 1) {
+			if (fixed) {
 				siteHeader.addClass('fixed-header');
-				scrollLink.fadeIn(300);
+				scrollLink.stop(true).fadeIn(300);
 			} else {
 				siteHeader.removeClass('fixed-header');
-				scrollLink.fadeOut(300);
+				scrollLink.stop(true).fadeOut(300);
 			}
 		}
 	}
 	headerStyle();
+
+	// Hunzoria: fade lazy images in as they arrive instead of popping in.
+	// Only images still loading get the class, so cached ones show at once;
+	// without JS nothing is hidden.
+	// One capturing listener on the document (load events don't bubble), so it
+	// also covers images the carousels clone later.
+	$('img[loading="lazy"]').each(function(){
+		if (!this.complete) { $(this).addClass('lazy-fade'); }
+	});
+	function revealLazy(e){
+		var t = e.target;
+		if (t && t.tagName === 'IMG') { $(t).addClass('lazy-done'); }
+	}
+	document.addEventListener('load', revealLazy, true);
+	document.addEventListener('error', revealLazy, true);
 
 	//Search Toggle
 	if ($('.search-box').length) {
@@ -602,11 +623,14 @@
 		  {
 			boxClass:     'wow',      // animated element css class (default is wow)
 			animateClass: 'animated', // animation css class (default is animated)
-			offset:       0,          // distance to the element when triggering the animation (default is 0)
+			offset:       -150,       // Hunzoria: start 150px BEFORE the block scrolls into view, so it is already appearing when it arrives
 			mobile:       false,       // trigger animations on mobile devices (default is true)
 			live:         true       // act on asynchronously loaded content (default is true)
 		  }
 		);
+		// Hunzoria: the template's 1.5s slide-ins left sections blank while
+		// scrolling. Cap every reveal at 0.6s with no delay.
+		$('.wow').attr({'data-wow-duration': '600ms', 'data-wow-delay': '0ms'});
 		wow.init();
 	}
 	
